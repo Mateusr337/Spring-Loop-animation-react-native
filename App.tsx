@@ -21,6 +21,15 @@ export default function App() {
     });
   };
 
+  const startChangeScaleLoop = () => {
+    Animated.loop(
+      Animated.timing(scale, {
+        toValue: 3,
+        useNativeDriver: true,
+      })
+    ).start();
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -33,7 +42,11 @@ export default function App() {
       >
         scale
       </Animated.Text>
-      <Button onPress={startChangeScale} title="click"></Button>
+
+      <View style={{ flexDirection: "row" }}>
+        <Button onPress={startChangeScale} title="spring"></Button>
+        <Button onPress={startChangeScaleLoop} title="loop"></Button>
+      </View>
     </View>
   );
 }
